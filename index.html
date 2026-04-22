@@ -10,28 +10,75 @@
 <body>
     <header>
         <a href="#" class="logo serif">Aparox</a>
-        <nav class="mono">
-            <a href="#work">Work</a>
-            <a href="#services">Services</a>
+        <nav class="mono" id="main-nav">
             <a href="#about">About</a>
+            <a href="#work">Work</a>
+            <a href="#features">Features</a>
+            <a href="#services">Services</a>
             <a href="#contact">Contact</a>
         </nav>
-        <div class="header-cta">
-            <div class="status-dot"></div>
-            <span class="mono">System Online</span>
-        </div>
+        <button class="menu-toggle" id="menu-toggle" aria-label="Toggle Menu">
+            <div class="line"></div>
+            <div class="line"></div>
+        </button>
     </header>
 
     <main>
         <section class="hero">
+            <canvas id="tubes-canvas"></canvas>
             <div class="mesh-container"></div>
             <div class="hero-content">
-                <h1 class="reveal-text">Organic<br><i>Intelligence</i></h1>
+                <div class="hero-header reveal-text">
+                    <h1 class="serif">Imagine it.<br><i>Iterate it.</i></h1>
+                    <p class="mono-subtitle">Explore freely, iterate fast. Your vision, AI-powered.</p>
+                </div>
+
+                <div class="platform-toggle reveal-text">
+                    <button class="toggle-btn active">Design on web</button>
+                    <div class="toggle-divider"></div>
+                    <span class="toggle-btn">Integrate on App</span>
+                  
+                </div>
+
+                <div class="chat-results-container" id="chat-thread">
+                    <button class="close-chat-btn" id="close-chat" title="Exit Chat">&times;</button>
+                    <!-- Messages will be injected here -->
+                </div>
+
+                <div class="search-container reveal-text">
+                    <div class="search-input-wrapper">
+                        <textarea placeholder="Describe what you want to create..." rows="1"></textarea>
+                    </div>
+                    <div class="search-toolbar">
+                        <div class="toolbar-left">
+                            <button class="tool-icon" title="Image"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg></button>
+                            <button class="tool-icon" title="Code"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg></button>
+                            <button class="tool-icon" title="Reference"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg></button>
+                            <div class="model-picker">
+                                <span class="gemini-icon">G</span>
+                                <span>Gemini 3 pro</span>
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                            </div>
+                        </div>
+                        <div class="toolbar-right">
+                            <div class="design-system-picker">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path><path d="M2 12h20"></path></svg>
+                                <span>Use Design System</span>
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                            </div>
+                            <button class="send-btn">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="19" x2="12" y2="5"></line><polyline points="5 12 12 5 19 12"></polyline></svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="quick-actions reveal-text">
+                    <button class="action-pill"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>Recreate Screenshot</button>
+                    <button class="action-pill"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>Import from Site</button>
+                    <button class="action-pill"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>Explore Effects</button>
+                </div>
             </div>
-            <div class="wave-container">
-                <div class="wave-curve"></div>
-            </div>
-            <button class="initialize-btn mono">Initialize</button>
         </section>
 
         <section id="work" class="work-section">
@@ -90,7 +137,69 @@
             </div>
         </section>
 
+        <section id="about" class="about-section reveal-text">
+            <div class="about-container">
+                <div class="about-visual">
+                    <div class="blob-gradient"></div>
+                    <div class="noise-overlay"></div>
+                </div>
+                <div class="about-content">
+                    <h2 class="mono tag">Our Philosophy</h2>
+                    <h3 class="serif">Crafting <i>Symbiotic</i> Futures</h3>
+                    <p>At Aparox, we believe that the next leap in technology won't be artificial—it will be organic. We create systems that don't just process data, but understand intention, evolving alongside the humans who use them. Our "Organic Intelligence" framework is built on the pillars of fluid design, cognitive empathy, and architectural precision.</p>
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <span class="serif">12+</span>
+                            <p class="mono">Global Lab Partners</p>
+                        </div>
+                        <div class="stat-item">
+                            <span class="serif">4.8M</span>
+                            <p class="mono">Neural Nodes Mapped</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="features" class="features-section">
+            <div class="section-header">
+                <h2 class="serif">Core <i>Architecture</i></h2>
+                <p class="mono">Engineered for Performance</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card reveal-text">
+                    <div class="feature-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path></svg>
+                    </div>
+                    <h4 class="serif">Cognitive Core</h4>
+                    <p>Layered neural processing that adapts to complex workflows and user patterns in real-time.</p>
+                </div>
+                <div class="feature-card reveal-text">
+                    <div class="feature-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path><path d="M2 12h20"></path></svg>
+                    </div>
+                    <h4 class="serif">Fluid Mesh</h4>
+                    <p>A responsive infrastructure that scales across platforms while maintaining zero-latency interaction.</p>
+                </div>
+                <div class="feature-card reveal-text">
+                    <div class="feature-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                    </div>
+                    <h4 class="serif">Ethical Integrity</h4>
+                    <p>Built-in privacy protocols and transparent logic paths to ensure safety and trust in every operation.</p>
+                </div>
+                <div class="feature-card reveal-text">
+                    <div class="feature-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                    </div>
+                    <h4 class="serif">Lumina Engine</h4>
+                    <p>Proprietary rendering engine for high-fidelity visual outputs and generative content creation.</p>
+                </div>
+            </div>
+        </section>
+
         <section id="services" class="services-section">
+
             <div class="services-left">
                 <h2 class="serif">Core<br><i>Capabilities</i></h2>
                 <a href="#" class="cta-link">
@@ -137,22 +246,69 @@
                 </div>
             </div>
         </section>
+        <section class="contact-section" id="contact">
+            <div class="contact-container reveal-text">
+                <div class="contact-card">
+                    <div class="contact-info">
+                        <h2 class="serif">Let's build the <i>future</i> together.</h2>
+                        <p class="mono">HAVE A PROJECT IN MIND? REACH OUT TO THE NEURAL CORE.</p>
+                        
+                        <div class="contact-methods">
+                            <div class="method-item">
+                                <span class="method-label mono">EMAIL</span>
+                                <a href="mailto:aparoxpvtltd@gmail.com" class="method-link serif">hello@aparox.ai</a>
+                            </div>
+                            <div class="method-item">
+                                <span class="method-label mono">LOCATION</span>
+                                <p class="method-link serif">Mysore, India</p>
+                            </div>
+                        </div>
+
+                        <div class="social-pills">
+                            <a href="#" class="social-pill">INSTAGRAM</a>
+                            <a href="#" class="social-pill">LINKEDIN</a>
+                            <a href="#" class="social-pill">TWITTER</a>
+                        </div>
+                    </div>
+
+                    <form class="contact-form" id="contact-form">
+                        <div class="form-group">
+                            <input type="text" id="name" placeholder="YOUR NAME" required autocomplete="off">
+                            <label for="name" class="mono">NAME</label>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" id="email" placeholder="EMAIL ADDRESS" required autocomplete="off">
+                            <label for="email" class="mono">EMAIL</label>
+                        </div>
+                        <div class="form-group">
+                            <textarea id="message" placeholder="TELL US ABOUT YOUR VISION" rows="4" required></textarea>
+                            <label for="message" class="mono">MESSAGE</label>
+                        </div>
+                        <button type="submit" class="submit-btn mono">
+                            <span>SEND MESSAGE</span>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+                        </button>
+                        <div class="form-status" id="form-status"></div>
+                    </form>
+                </div>
+            </div>
+        </section>
     </main>
 
-    <footer>
+    <footer id="contact">
         <h2 class="footer-quote serif">Defining the intersection of <i>elegance</i> and <i>intelligence</i>.</h2>
         <div class="footer-grid">
             <div class="footer-col">
                 <h4 class="mono">Location</h4>
                 <ul class="footer-links">
-                    <li><a href="#">Tokyo, JP</a></li>
-                    <li><a href="#">London, UK</a></li>
+                    <li><a href="#">hebbal, 1st stage</a></li>
+                    <li><a href="#">Mysore, Karnataka</a></li>
                 </ul>
             </div>
             <div class="footer-col">
                 <h4 class="mono">Contact</h4>
                 <ul class="footer-links">
-                    <li><a href="mailto:hello@aparox.ai">hello@aparox.ai</a></li>
+                    <li><a href="mailto:aparoxpvtltd@gmail.com">hello@aparox.ai</a></li>
                     <li><a href="#">+44 (0) 20 7946 0958</a></li>
                 </ul>
             </div>
