@@ -5,14 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aparox AI | Organic Intelligence</title>
     <meta name="description" content="A premium editorial-tech hybrid platform utilizing organic intelligence and fluid design.">
+    <link rel="icon" type="image/png" href="/logo.png">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <canvas id="global-3d-canvas" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1; pointer-events: none;"></canvas>
     <header>
-        <a href="#" class="logo serif">Aparox</a>
+        <a href="#" class="logo serif"><img src="/logo.png" alt="Aparox AI Logo" id="site-logo"></a>
         <nav class="mono" id="main-nav">
             <a href="#about">About</a>
-            <a href="#work">Work</a>
+            <a href="#analytics">Analytics</a>
             <a href="#features">Features</a>
             <a href="#services">Services</a>
             <a href="#contact">Contact</a>
@@ -29,15 +31,14 @@
             <div class="mesh-container"></div>
             <div class="hero-content">
                 <div class="hero-header reveal-text">
-                    <h1 class="serif">Imagine it.<br><i>Iterate it.</i></h1>
-                    <p class="mono-subtitle">Explore freely, iterate fast. Your vision, AI-powered.</p>
+                    <h1 class="serif">Data-Driven.<br><i>Design-Led.</i></h1>
+                    <p class="mono-subtitle">We analyze your market potential, then build the digital infrastructure to capture it.</p>
                 </div>
 
                 <div class="platform-toggle reveal-text">
-                    <button class="toggle-btn active">Design on web</button>
+                    <a href="#analytics" style="text-decoration: none;"><button class="toggle-btn active">Analyze Market</button></a>
                     <div class="toggle-divider"></div>
-                    <span class="toggle-btn">Integrate on App</span>
-                  
+                    <a href="#contact" style="text-decoration: none;"><span class="toggle-btn">Start a Project</span></a>
                 </div>
 
                 <div class="chat-results-container" id="chat-thread">
@@ -47,7 +48,7 @@
 
                 <div class="search-container reveal-text">
                     <div class="search-input-wrapper">
-                        <textarea placeholder="Describe what you want to create..." rows="1"></textarea>
+                        <textarea placeholder="Describe your business or project needs for a quick AI consultation..." rows="1"></textarea>
                     </div>
                     <div class="search-toolbar">
                         <div class="toolbar-left">
@@ -74,64 +75,61 @@
                 </div>
 
                 <div class="quick-actions reveal-text">
-                    <button class="action-pill"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>Recreate Screenshot</button>
-                    <button class="action-pill"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>Import from Site</button>
-                    <button class="action-pill"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>Explore Effects</button>
+                    <button class="action-pill"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>Request Web Audit</button>
+                    <button class="action-pill"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>View Analytics Demo</button>
+                    <button class="action-pill"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>Explore Portfolio</button>
                 </div>
             </div>
         </section>
 
-        <section id="work" class="work-section">
-            <div class="work-grid">
-                <!-- Project 1 -->
-                <div class="work-item reveal-text">
-                    <div class="card-container">
-                        <div class="card-orb"></div>
-                        <div class="action-pill mono">View Project</div>
-                    </div>
-                    <div class="work-info">
-                        <div class="work-line"></div>
-                        <h3 class="work-title serif">Lumina Systems</h3>
-                        <p class="work-category mono">Product Design / AI</p>
-                    </div>
+        <section id="analytics" class="analytics-section">
+            <div class="analytics-container reveal-text">
+                <div class="section-header" style="text-align: center; margin-bottom: 4rem;">
+                    <h2 class="serif">Market <i>Intelligence</i></h2>
+                    <p class="mono">Real-time Business Potential Analysis</p>
                 </div>
+                
+                <div class="analytics-card">
+                    <form id="analytics-form" class="analytics-form">
+                        <div class="input-row">
+                            <div class="input-group">
+                                <label class="mono" for="biz-name">Business / Shop Name</label>
+                                <input type="text" id="biz-name" placeholder="e.g. Joe's Coffee Shop" required>
+                            </div>
+                            <div class="input-group">
+                                <label class="mono" for="biz-location">Location</label>
+                                <input type="text" id="biz-location" placeholder="e.g. Downtown Seattle" required>
+                            </div>
+                        </div>
+                        <button type="submit" class="analyze-btn">
+                            <span class="btn-text">Analyze Potential</span>
+                            <div class="btn-loader" style="display:none;"></div>
+                        </button>
+                    </form>
 
-                <!-- Project 2 -->
-                <div class="work-item reveal-text">
-                    <div class="card-container">
-                        <div class="card-orb" style="background: radial-gradient(circle, #c084fc 0%, transparent 70%);"></div>
-                        <div class="action-pill mono">View Project</div>
-                    </div>
-                    <div class="work-info">
-                        <div class="work-line"></div>
-                        <h3 class="work-title serif">Ether Framework</h3>
-                        <p class="work-category mono">Infrastructure / Core</p>
-                    </div>
-                </div>
-
-                <!-- Project 3 -->
-                <div class="work-item reveal-text">
-                    <div class="card-container">
-                        <div class="card-orb" style="background: radial-gradient(circle, #818cf8 0%, transparent 70%);"></div>
-                        <div class="action-pill mono">View Project</div>
-                    </div>
-                    <div class="work-info">
-                        <div class="work-line"></div>
-                        <h3 class="work-title serif">Vortex UI</h3>
-                        <p class="work-category mono">Component / Motion</p>
-                    </div>
-                </div>
-
-                <!-- Project 4 -->
-                <div class="work-item reveal-text">
-                    <div class="card-container">
-                        <div class="card-orb"></div>
-                        <div class="action-pill mono">View Project</div>
-                    </div>
-                    <div class="work-info">
-                        <div class="work-line"></div>
-                        <h3 class="work-title serif">Nexus Labs</h3>
-                        <p class="work-category mono">Research / Tech</p>
+                    <div id="analytics-results" class="analytics-results" style="display:none;">
+                        <div class="result-header">
+                            <h3 class="serif">Intelligence Report</h3>
+                            <p class="mono" id="result-biz-name">Target: </p>
+                        </div>
+                        <div class="stats-grid">
+                            <div class="stat-box">
+                                <div class="stat-label mono">Total Addressable Market (TAM)</div>
+                                <div class="stat-value" id="stat-tam">$0</div>
+                            </div>
+                            <div class="stat-box">
+                                <div class="stat-label mono">Local Customers / Month</div>
+                                <div class="stat-value" id="stat-customers">0</div>
+                            </div>
+                            <div class="stat-box accent-box">
+                                <div class="stat-label mono">Online Profit Potential</div>
+                                <div class="stat-value" id="stat-profit">$0</div>
+                                <div class="stat-sub">Estimated Annual Increase</div>
+                            </div>
+                        </div>
+                        <div class="result-footer">
+                            <p class="mono" style="opacity: 0.5; font-size: 10px; text-align: center; margin-top: 2rem;">*Mock data active. Live web scraper integration pending.</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -139,61 +137,61 @@
 
         <section id="about" class="about-section reveal-text">
             <div class="about-container">
-                <div class="about-visual">
+                <div class="about-visual" style="position: relative; background: transparent;">
                     <div class="blob-gradient"></div>
                     <div class="noise-overlay"></div>
                 </div>
                 <div class="about-content">
-                    <h2 class="mono tag">Our Philosophy</h2>
-                    <h3 class="serif">Crafting <i>Symbiotic</i> Futures</h3>
-                    <p>At Aparox, we believe that the next leap in technology won't be artificial—it will be organic. We create systems that don't just process data, but understand intention, evolving alongside the humans who use them. Our "Organic Intelligence" framework is built on the pillars of fluid design, cognitive empathy, and architectural precision.</p>
+                    <h2 class="mono tag">The Agency</h2>
+                    <h3 class="serif">Bridging Analytics & <i>Experience</i></h3>
+                    <p>At Aparox, we believe that beautiful design must be backed by hard data. We don't just build stunning web experiences; we analyze real-world market data to prove your ROI before we write a single line of code. From local brick-and-mortars to global enterprises, we engineer scalable online growth.</p>
                     <div class="stats-grid">
                         <div class="stat-item">
-                            <span class="serif">12+</span>
-                            <p class="mono">Global Lab Partners</p>
+                            <span class="serif">500+</span>
+                            <p class="mono">Businesses Analyzed</p>
                         </div>
                         <div class="stat-item">
-                            <span class="serif">4.8M</span>
-                            <p class="mono">Neural Nodes Mapped</p>
+                            <span class="serif">$12M+</span>
+                            <p class="mono">Client Revenue Generated</p>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="features" class="features-section">
-            <div class="section-header">
-                <h2 class="serif">Core <i>Architecture</i></h2>
-                <p class="mono">Engineered for Performance</p>
+        <section id="features" class="features-section" style="position: relative; overflow: hidden; background: transparent;">
+            <div class="section-header" style="position: relative; z-index: 1;">
+                <h2 class="serif">Our <i>Methodology</i></h2>
+                <p class="mono">Engineered for Growth</p>
             </div>
-            <div class="features-grid">
+            <div class="features-grid" style="position: relative; z-index: 1;">
                 <div class="feature-card reveal-text">
                     <div class="feature-icon">
                         <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path></svg>
                     </div>
-                    <h4 class="serif">Cognitive Core</h4>
-                    <p>Layered neural processing that adapts to complex workflows and user patterns in real-time.</p>
+                    <h4 class="serif">Market Intelligence</h4>
+                    <p>Real-time data analysis to uncover your exact Total Addressable Market (TAM) before building.</p>
                 </div>
                 <div class="feature-card reveal-text">
                     <div class="feature-icon">
                         <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path><path d="M2 12h20"></path></svg>
                     </div>
-                    <h4 class="serif">Fluid Mesh</h4>
-                    <p>A responsive infrastructure that scales across platforms while maintaining zero-latency interaction.</p>
+                    <h4 class="serif">Bespoke Development</h4>
+                    <p>High-fidelity, custom-coded web platforms tailored specifically to your brand's DNA.</p>
                 </div>
                 <div class="feature-card reveal-text">
                     <div class="feature-icon">
                         <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
                     </div>
-                    <h4 class="serif">Ethical Integrity</h4>
-                    <p>Built-in privacy protocols and transparent logic paths to ensure safety and trust in every operation.</p>
+                    <h4 class="serif">Conversion Focused</h4>
+                    <p>Data-driven UI/UX design architecture guaranteed to turn your web traffic into profit.</p>
                 </div>
                 <div class="feature-card reveal-text">
                     <div class="feature-icon">
                         <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
                     </div>
-                    <h4 class="serif">Lumina Engine</h4>
-                    <p>Proprietary rendering engine for high-fidelity visual outputs and generative content creation.</p>
+                    <h4 class="serif">Seamless Integration</h4>
+                    <p>From robust e-commerce backends to fully automated local lead generation systems.</p>
                 </div>
             </div>
         </section>
@@ -210,48 +208,48 @@
             <div class="services-right">
                 <div class="accordion-item">
                     <div class="accordion-header">
-                        <h3 class="serif">Strategic Direction</h3>
+                        <h3 class="serif">Data & Market Analysis</h3>
                         <span class="mono">+</span>
                     </div>
                     <div class="accordion-content">
                         <div class="accordion-inner">
-                            <p>We provide deep insights and strategic architectural planning for next-generation intelligence platforms.</p>
-                            <span class="tag-mono">[Dynamic Components]</span>
+                            <p>We deploy advanced algorithms to uncover your local addressable market and predict online profitability.</p>
+                            <span class="tag-mono">[Market Intelligence]</span>
                         </div>
                     </div>
                 </div>
                 <div class="accordion-item">
                     <div class="accordion-header">
-                        <h3 class="serif">Premium Interfaces</h3>
+                        <h3 class="serif">Full-Stack Development</h3>
                         <span class="mono">+</span>
                     </div>
                     <div class="accordion-content">
                         <div class="accordion-inner">
-                            <p>Exquisite digital experiences crafted with precision, motion, and editorial elegance.</p>
-                            <span class="tag-mono">[Fluid Motion]</span>
+                            <p>Exquisite, high-performance web applications built from the ground up for maximum speed and scale.</p>
+                            <span class="tag-mono">[Custom Web Apps]</span>
                         </div>
                     </div>
                 </div>
                 <div class="accordion-item">
                     <div class="accordion-header">
-                        <h3 class="serif">Generative Assets</h3>
+                        <h3 class="serif">E-Commerce & Funnels</h3>
                         <span class="mono">+</span>
                     </div>
                     <div class="accordion-content">
                         <div class="accordion-inner">
-                            <p>Harnessing AI to create meaningful, high-fidelity visual assets and interaction patterns.</p>
-                            <span class="tag-mono">[Neural Forge]</span>
+                            <p>End-to-end digital storefronts and sales funnels designed to maximize conversion rates and revenue.</p>
+                            <span class="tag-mono">[Conversion Optimization]</span>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-        <section class="contact-section" id="contact">
-            <div class="contact-container reveal-text">
+        <section class="contact-section" id="contact" style="position: relative; overflow: hidden; background: transparent;">
+            <div class="contact-container reveal-text" style="position: relative; z-index: 1;">
                 <div class="contact-card">
                     <div class="contact-info">
-                        <h2 class="serif">Let's build the <i>future</i> together.</h2>
-                        <p class="mono">HAVE A PROJECT IN MIND? REACH OUT TO THE NEURAL CORE.</p>
+                        <h2 class="serif">Ready to scale your <i>business</i> online?</h2>
+                        <p class="mono">REQUEST A CUSTOM MARKET AUDIT AND WEB BUILD PROPOSAL.</p>
                         
                         <div class="contact-methods">
                             <div class="method-item">
@@ -281,7 +279,7 @@
                             <label for="email" class="mono">EMAIL</label>
                         </div>
                         <div class="form-group">
-                            <textarea id="message" placeholder="TELL US ABOUT YOUR VISION" rows="4" required></textarea>
+                            <textarea id="message" placeholder="TELL US ABOUT YOUR BUSINESS OR PROJECT" rows="4" required></textarea>
                             <label for="message" class="mono">MESSAGE</label>
                         </div>
                         <button type="submit" class="submit-btn mono">
@@ -296,7 +294,7 @@
     </main>
 
     <footer id="contact">
-        <h2 class="footer-quote serif">Defining the intersection of <i>elegance</i> and <i>intelligence</i>.</h2>
+        <h2 class="footer-quote serif">Turning <i>market data</i> into <i>digital profit</i>.</h2>
         <div class="footer-grid">
             <div class="footer-col">
                 <h4 class="mono">Location</h4>
