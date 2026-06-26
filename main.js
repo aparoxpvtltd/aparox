@@ -2,6 +2,49 @@ import './style.css'
 import * as THREE from 'three';
 
 document.addEventListener('DOMContentLoaded', () => {
+    // 0. Remove Spline Watermark (More aggressive version)
+    const splineViewer = document.querySelector('spline-viewer');
+    if (splineViewer) {
+        const interval = setInterval(() => {
+            const shadowRoot = splineViewer.shadowRoot;
+            if (shadowRoot) {
+                // Try removing elements directly
+                const logo = shadowRoot.getElementById('logo') || 
+                             shadowRoot.querySelector('a[href*="spline.design"]') || 
+                             shadowRoot.querySelector('[class*="logo"]') ||
+                             shadowRoot.querySelector('a[href*="spline"]');
+                if (logo) {
+                    logo.remove();
+                }
+                
+                // Inject style element to hide watermark / logo elements
+                if (!shadowRoot.querySelector('#anti-watermark-style')) {
+                    const style = document.createElement('style');
+                    style.id = 'anti-watermark-style';
+                    style.textContent = `
+                        #logo, .logo, a[href*="spline.design"], a[href*="spline"], #spline-logo, [class*="watermark"] {
+                            display: none !important;
+                            visibility: hidden !important;
+                            opacity: 0 !important;
+                            pointer-events: none !important;
+                        }
+                    `;
+                    shadowRoot.appendChild(style);
+                }
+            }
+        }, 100);
+        // Keep running for 10 seconds to ensure it stays hidden
+        setTimeout(() => clearInterval(interval), 10000);
+    }
+
+    // Disable Zoom on Scroll in Hero section Spline model
+    const heroSection = document.querySelector('.hero');
+    if (heroSection) {
+        heroSection.addEventListener('wheel', (e) => {
+            e.stopPropagation();
+        }, { capture: true });
+    }
+
     // 1. Reveal Animations on Scroll
     const observerOptions = {
         threshold: 0.1,
@@ -149,161 +192,9 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    init3DBackground();
+    // init3DBackground(); // Disabled in favor of Spline 3D background
 
-    // 5.5 Global Scrollytelling 3D Background - Neural Vortex
-    const initGlobal3DScrollSync = () => {
-        const canvas = document.getElementById('global-3d-canvas');
-        if (!canvas) return;
 
-        const scene = new THREE.Scene();
-        scene.fog = new THREE.FogExp2(0x050505, 0.005); // Lighter fog for deeper view
-
-        const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 2000);
-        camera.position.set(0, 200, 0); // Start high up
-
-        const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-
-        const vortexGroup = new THREE.Group();
-        scene.add(vortexGroup);
-
-        // Instanced Cubes Vortex
-        const instanceCount = 3000;
-        const geom = new THREE.OctahedronGeometry(1.5, 0);
-        const mat = new THREE.MeshBasicMaterial({ 
-            color: 0x818cf8, 
-            wireframe: true, 
-            transparent: true, 
-            opacity: 0.25,
-            blending: THREE.AdditiveBlending
-        });
-
-        const instancedMesh = new THREE.InstancedMesh(geom, mat, instanceCount);
-        vortexGroup.add(instancedMesh);
-
-        const dummy = new THREE.Object3D();
-        const instanceData = [];
-
-        // Distribute in a spiral/vortex along the Y axis
-        // We will fly down the Y axis from 200 to -400
-        for(let i=0; i<instanceCount; i++) {
-            const y = (Math.random() - 0.5) * 800; 
-            const radius = 15 + Math.random() * 40; 
-            const angle = y * 0.02 + Math.random() * Math.PI * 2;
-
-            const x = Math.cos(angle) * radius;
-            const z = Math.sin(angle) * radius;
-
-            dummy.position.set(x, y, z);
-            dummy.rotation.set(Math.random()*Math.PI, Math.random()*Math.PI, Math.random()*Math.PI);
-            
-            const s = Math.random() * 2 + 0.5;
-            dummy.scale.set(s, s, s);
-
-            dummy.updateMatrix();
-            instancedMesh.setMatrixAt(i, dummy.matrix);
-
-            instanceData.push({ 
-                rx: (Math.random() - 0.5) * 0.05, 
-                ry: (Math.random() - 0.5) * 0.05 
-            });
-        }
-
-        // Glowing Dust
-        const dustGeom = new THREE.BufferGeometry();
-        const dustPos = new Float32Array(instanceCount * 3);
-        for(let i=0; i<instanceCount * 3; i+=3) {
-            const y = (Math.random() - 0.5) * 800;
-            const radius = Math.random() * 20; 
-            const angle = Math.random() * Math.PI * 2;
-            dustPos[i] = Math.cos(angle) * radius;
-            dustPos[i+1] = y;
-            dustPos[i+2] = Math.sin(angle) * radius;
-        }
-        dustGeom.setAttribute('position', new THREE.BufferAttribute(dustPos, 3));
-        const dustMat = new THREE.PointsMaterial({ 
-            color: 0xc084fc, 
-            size: 0.8, 
-            transparent: true, 
-            opacity: 0.6, 
-            blending: THREE.AdditiveBlending 
-        });
-        const dustPoints = new THREE.Points(dustGeom, dustMat);
-        vortexGroup.add(dustPoints);
-
-        // Scroll and Mouse sync
-        let scrollY = window.scrollY;
-        let mouseX = 0; 
-        let mouseY = 0;
-
-        window.addEventListener('scroll', () => {
-            scrollY = window.scrollY;
-        });
-
-        document.addEventListener('mousemove', (e) => {
-            mouseX = (e.clientX / window.innerWidth) * 2 - 1;
-            mouseY = -(e.clientY / window.innerHeight) * 2 + 1;
-        });
-
-        const clock = new THREE.Clock();
-        
-        // Ensure instanced mesh gets updated
-        instancedMesh.instanceMatrix.setUsage(THREE.DynamicDrawUsage);
-
-        const animateAll = () => {
-            const time = clock.getElapsedTime();
-
-            // Calculate scroll percentage
-            const maxScroll = Math.max(1, document.body.scrollHeight - window.innerHeight);
-            const scrollRatio = Math.min(1, Math.max(0, scrollY / maxScroll));
-            
-            // Map scroll ratio (0 to 1) to camera Y position (200 down to -400)
-            const targetY = 200 - (scrollRatio * 600); 
-            camera.position.y += (targetY - camera.position.y) * 0.1;
-
-            // Rotate the entire vortex slowly
-            vortexGroup.rotation.y = time * 0.1;
-
-            // Animate instances
-            for(let i = 0; i < instanceCount; i++) {
-                instancedMesh.getMatrixAt(i, dummy.matrix);
-                dummy.matrix.decompose(dummy.position, dummy.quaternion, dummy.scale);
-                
-                dummy.rotation.x += instanceData[i].rx;
-                dummy.rotation.y += instanceData[i].ry;
-                
-                dummy.updateMatrix();
-                instancedMesh.setMatrixAt(i, dummy.matrix);
-            }
-            instancedMesh.instanceMatrix.needsUpdate = true;
-
-            // Subtle camera movement based on scroll ratio to make path feel curved
-            camera.position.x = Math.sin(scrollRatio * Math.PI * 2) * 8;
-            camera.position.z = Math.cos(scrollRatio * Math.PI * 2) * 8;
-
-            // Mouse Interaction
-            camera.position.x += mouseX * 5;
-            camera.position.z += mouseY * 5;
-
-            // Look down the tunnel
-            camera.lookAt(0, camera.position.y - 100, 0);
-
-            renderer.render(scene, camera);
-            requestAnimationFrame(animateAll);
-        };
-
-        animateAll();
-
-        window.addEventListener('resize', () => {
-            camera.aspect = window.innerWidth / window.innerHeight;
-            camera.updateProjectionMatrix();
-            renderer.setSize(window.innerWidth, window.innerHeight);
-        });
-    };
-
-    initGlobal3DScrollSync();
     
     // 6. Gemini API Integration
     const API_KEY = import.meta.env.VITE_GEMINI_API_KEY;
@@ -413,7 +304,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const formStatus = document.getElementById('form-status');
 
     if (contactForm) {
-        contactForm.addEventListener('submit', (e) => {
+        contactForm.addEventListener('submit', async (e) => {
             e.preventDefault();
             const submitBtn = contactForm.querySelector('.submit-btn');
 
@@ -422,25 +313,68 @@ document.addEventListener('DOMContentLoaded', () => {
             const message = document.getElementById('message').value;
 
             submitBtn.disabled = true;
-            submitBtn.innerHTML = '<span>OPENING MAIL CLIENT...</span>';
+            submitBtn.innerHTML = '<span>SENDING...</span>';
+            formStatus.textContent = 'Sending message...';
+            formStatus.style.color = '#818cf8';
 
-            // Construct mailto link
-            const subject = `Project Inquiry from ${name}`;
-            const body = `Name: ${name}%0D%0AEmail: ${email}%0D%0A%0D%0A${message}`;
-            const mailtoLink = `mailto:aparoxpvtltd@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body).replace(/%0A/g, '%0D%0A')}`;
+            const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
+            const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
 
-            setTimeout(() => {
-                window.location.href = mailtoLink;
-                formStatus.textContent = 'REDIRECTING TO MAIL CLIENT...';
-                submitBtn.innerHTML = '<span>SENT</span>';
+            if (!supabaseUrl || !supabaseAnonKey || supabaseUrl.includes('your-project') || supabaseAnonKey.includes('your-anon')) {
+                // Fallback to mailto link if Supabase is not configured yet
+                console.warn('Supabase keys not configured in .env. Falling back to mailto.');
+                const subject = `Project Inquiry from ${name}`;
+                const body = `Name: ${name}%0D%0AEmail: ${email}%0D%0A%0D%0A${message}`;
+                const mailtoLink = `mailto:aparoxpvtltd@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body).replace(/%0A/g, '%0D%0A')}`;
 
+                setTimeout(() => {
+                    window.location.href = mailtoLink;
+                    formStatus.textContent = 'REDIRECTING TO MAIL CLIENT...';
+                    submitBtn.innerHTML = '<span>SENT</span>';
+
+                    setTimeout(() => {
+                        formStatus.textContent = '';
+                        submitBtn.disabled = false;
+                        submitBtn.innerHTML = '<span>SEND MESSAGE</span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>';
+                        contactForm.reset();
+                    }, 3000);
+                }, 800);
+                return;
+            }
+
+            try {
+                const response = await fetch(`${supabaseUrl}/rest/v1/contact_submissions`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'apikey': supabaseAnonKey,
+                        'Authorization': `Bearer ${supabaseAnonKey}`,
+                        'Prefer': 'return=minimal'
+                    },
+                    body: JSON.stringify({ name, email, message })
+                });
+
+                if (response.ok) {
+                    formStatus.textContent = 'Message sent successfully!';
+                    formStatus.style.color = '#10b981'; // Success Green
+                    submitBtn.innerHTML = '<span>SENT</span>';
+                    contactForm.reset();
+                } else {
+                    const data = await response.json();
+                    throw new Error(data.message || 'Failed to send message.');
+                }
+            } catch (error) {
+                console.error(error);
+                formStatus.textContent = `Error: ${error.message}`;
+                formStatus.style.color = '#ef4444'; // Error Red
+                submitBtn.innerHTML = '<span>TRY AGAIN</span>';
+            } finally {
                 setTimeout(() => {
                     formStatus.textContent = '';
                     submitBtn.disabled = false;
                     submitBtn.innerHTML = '<span>SEND MESSAGE</span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>';
-                    contactForm.reset();
-                }, 3000);
-            }, 800);
+                }, 4000);
+            }
         });
     }
     // 9. Business Analytics Tool Logic (Mock Scraper)

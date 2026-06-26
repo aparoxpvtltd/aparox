@@ -12,6 +12,14 @@ dist
 dist-ssr
 *.local
 
+# Secrets and configs
+.env
+.env.*
+.env.local
+
+# Scratch and temp directories
+scratch/
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

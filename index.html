@@ -7,9 +7,10 @@
     <meta name="description" content="A premium editorial-tech hybrid platform utilizing organic intelligence and fluid design.">
     <link rel="icon" type="image/png" href="/logo.png">
     <link rel="stylesheet" href="style.css">
+    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.54/build/spline-viewer.js"></script>
 </head>
 <body>
-    <canvas id="global-3d-canvas" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1; pointer-events: none;"></canvas>
+    <div class="bg-blue-line"></div>
     <header>
         <a href="#" class="logo serif"><img src="/logo.png" alt="Aparox AI Logo" id="site-logo"></a>
         <nav class="mono" id="main-nav">
@@ -27,58 +28,15 @@
 
     <main>
         <section class="hero">
-            <canvas id="tubes-canvas"></canvas>
-            <div class="mesh-container"></div>
-            <div class="hero-content">
-                <div class="hero-header reveal-text">
-                    <h1 class="serif">Data-Driven.<br><i>Design-Led.</i></h1>
-                    <p class="mono-subtitle">We analyze your market potential, then build the digital infrastructure to capture it.</p>
-                </div>
-
-                <div class="platform-toggle reveal-text">
-                    <a href="#analytics" style="text-decoration: none;"><button class="toggle-btn active">Analyze Market</button></a>
-                    <div class="toggle-divider"></div>
-                    <a href="#contact" style="text-decoration: none;"><span class="toggle-btn">Start a Project</span></a>
-                </div>
-
-                <div class="chat-results-container" id="chat-thread">
-                    <button class="close-chat-btn" id="close-chat" title="Exit Chat">&times;</button>
-                    <!-- Messages will be injected here -->
-                </div>
-
-                <div class="search-container reveal-text">
-                    <div class="search-input-wrapper">
-                        <textarea placeholder="Describe your business or project needs for a quick AI consultation..." rows="1"></textarea>
-                    </div>
-                    <div class="search-toolbar">
-                        <div class="toolbar-left">
-                            <button class="tool-icon" title="Image"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg></button>
-                            <button class="tool-icon" title="Code"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg></button>
-                            <button class="tool-icon" title="Reference"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg></button>
-                            <div class="model-picker">
-                                <span class="gemini-icon">G</span>
-                                <span>Gemini 3 pro</span>
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
-                            </div>
-                        </div>
-                        <div class="toolbar-right">
-                            <div class="design-system-picker">
-                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path><path d="M2 12h20"></path></svg>
-                                <span>Use Design System</span>
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
-                            </div>
-                            <button class="send-btn">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="19" x2="12" y2="5"></line><polyline points="5 12 12 5 19 12"></polyline></svg>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="quick-actions reveal-text">
-                    <button class="action-pill"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>Request Web Audit</button>
-                    <button class="action-pill"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>View Analytics Demo</button>
-                    <button class="action-pill"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>Explore Portfolio</button>
-                </div>
+            <spline-viewer url="https://prod.spline.design/2zYad3evfv4ogiuN/scene.splinecode" class="hero-spline"></spline-viewer>
+            
+            <div class="hero-bottom-text bottom-left reveal-text">
+                <h2>Let's build<br><i>something.</i></h2>
+            </div>
+            
+            <div class="hero-bottom-text bottom-right reveal-text">
+                <div class="scroll-title">Scroll Down</div>
+                <div class="about-text">Aparox AI builds premium digital infrastructure driven by organic intelligence and fluid design.</div>
             </div>
         </section>
 
