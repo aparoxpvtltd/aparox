@@ -18,8 +18,13 @@
             <a href="#analytics">Analytics</a>
             <a href="#features">Features</a>
             <a href="#services">Services</a>
+            <a href="#testimonials">Reviews</a>
             <a href="#contact">Contact</a>
         </nav>
+        <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle Theme">
+            <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+            <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+        </button>
         <button class="menu-toggle" id="menu-toggle" aria-label="Toggle Menu">
             <div class="line"></div>
             <div class="line"></div>
@@ -28,6 +33,7 @@
 
     <main>
         <section class="hero">
+            <div class="bg-dot-patch hero-top-right"></div>
             <spline-viewer url="https://prod.spline.design/2zYad3evfv4ogiuN/scene.splinecode" class="hero-spline"></spline-viewer>
             
             <div class="hero-bottom-text bottom-left reveal-text">
@@ -94,6 +100,7 @@
         </section>
 
         <section id="about" class="about-section reveal-text">
+            <div class="bg-dot-patch about-bottom-left"></div>
             <div class="about-container">
                 <div class="about-visual">
                     <canvas id="about-network-canvas"></canvas>
@@ -217,7 +224,69 @@
                 </div>
             </div>
         </section>
+
+        <section id="testimonials" class="testimonials-section reveal-text">
+            <div class="section-header" style="text-align: center; margin-bottom: 5rem;">
+                <h2 class="serif">Client <i>Stories</i></h2>
+                <p class="mono">Real Impact, Real Growth</p>
+            </div>
+            
+            <div class="testimonials-grid">
+                <div class="testimonial-card glass-panel">
+                    <div class="testimonial-quote">
+                        "Aparox analyzed our local traffic footfall in Indiranagar and built a high-converting storefront that increased our monthly online orders by 140%. Truly data-driven!"
+                    </div>
+                    <div class="testimonial-author">
+                        <span class="author-name">Aditya Sharma</span>
+                        <span class="author-role mono">Founder, Peak Coffee (Bengaluru)</span>
+                        <div class="testimonial-rating">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card glass-panel">
+                    <div class="testimonial-quote">
+                        "Their design aesthetic is premium and clean, but what really impressed us was the ROI proof before coding. The new site loads in 0.8s and our conversion rate doubled."
+                    </div>
+                    <div class="testimonial-author">
+                        <span class="author-name">Meera Iyer</span>
+                        <span class="author-role mono">Marketing Director, Veda Organics (Mysore)</span>
+                        <div class="testimonial-rating">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card glass-panel">
+                    <div class="testimonial-quote">
+                        "We shifted from a basic template to Aparox's custom code. Our bounce rate dropped from 65% to 22% within the first month. Excellent local support and top execution."
+                    </div>
+                    <div class="testimonial-author">
+                        <span class="author-name">Rajesh Patel</span>
+                        <span class="author-role mono">Owner, Patel Electronics (Mumbai)</span>
+                        <div class="testimonial-rating">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <section class="contact-section" id="contact">
+            <div class="bg-dot-patch contact-top-left"></div>
             <div class="contact-container reveal-text">
                 <div class="contact-card glass-panel">
                     <div class="contact-info">

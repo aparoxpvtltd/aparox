@@ -1,6 +1,25 @@
 import './style.css'
 
 document.addEventListener('DOMContentLoaded', () => {
+    // 00. Premium Theme Toggler Logic
+    const themeToggleBtn = document.getElementById('theme-toggle');
+    const savedTheme = localStorage.getItem('theme');
+    
+    // Check system preference if no saved theme
+    const systemPrefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+    const initialTheme = savedTheme || (systemPrefersLight ? 'light' : 'dark');
+    
+    if (initialTheme === 'light') {
+        document.body.classList.add('light-theme');
+    }
+    
+    if (themeToggleBtn) {
+        themeToggleBtn.addEventListener('click', () => {
+            const isLight = document.body.classList.toggle('light-theme');
+            localStorage.setItem('theme', isLight ? 'light' : 'dark');
+        });
+    }
+
     // 0. Remove Spline Watermark (More aggressive version)
     const splineViewer = document.querySelector('spline-viewer');
     if (splineViewer) {
@@ -524,7 +543,8 @@ document.addEventListener('DOMContentLoaded', () => {
             draw() {
                 ctx.beginPath();
                 ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-                ctx.fillStyle = 'rgba(129, 140, 248, 0.7)'; // Indigo light
+                const isLight = document.body.classList.contains('light-theme');
+                ctx.fillStyle = isLight ? 'rgba(79, 70, 229, 0.8)' : 'rgba(129, 140, 248, 0.7)'; // Indigo 600 vs Indigo 400
                 ctx.fill();
             }
         }
@@ -544,6 +564,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const animate = () => {
             if (active) {
                 ctx.clearRect(0, 0, width, height);
+                const isLight = document.body.classList.contains('light-theme');
 
                 // Draw connections
                 for (let i = 0; i < particles.length; i++) {
@@ -563,7 +584,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             ctx.lineTo(p2.x, p2.y);
                             // Fade out lines as they get further apart
                             const alpha = (1 - dist / connectionDistance) * 0.15;
-                            ctx.strokeStyle = `rgba(192, 132, 252, ${alpha})`; // Purple light
+                            ctx.strokeStyle = isLight ? `rgba(109, 40, 217, ${alpha})` : `rgba(192, 132, 252, ${alpha})`; // Purple 700 vs Purple 400
                             ctx.lineWidth = 0.8;
                             ctx.stroke();
                         }
@@ -579,7 +600,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             ctx.moveTo(p1.x, p1.y);
                             ctx.lineTo(mouse.x, mouse.y);
                             const alpha = (1 - dist / mouse.radius) * 0.25;
-                            ctx.strokeStyle = `rgba(129, 140, 248, ${alpha})`;
+                            ctx.strokeStyle = isLight ? `rgba(79, 70, 229, ${alpha})` : `rgba(129, 140, 248, ${alpha})`;
                             ctx.lineWidth = 1;
                             ctx.stroke();
                         }
@@ -710,13 +731,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
         let radarAngle = 0;
 
+        // Helper to get theme colors for canvas rendering
+        const getCanvasColors = () => {
+            const isLight = document.body.classList.contains('light-theme');
+            return {
+                indigo: isLight ? '79, 70, 229' : '129, 140, 248', // Indigo 600 vs 400
+                purple: isLight ? '109, 40, 217' : '192, 132, 252', // Purple 700 vs 400
+                accent: isLight ? '55, 48, 163' : '67, 56, 202', // Indigo 800 vs Indigo 700
+                white: isLight ? '28, 25, 23' : '255, 255, 255' // Stone 900 vs White
+            };
+        };
+
         // Draw functions
         const drawRadar = (alpha) => {
             const centerX = width / 2;
             const centerY = height / 2;
             const maxRadius = Math.min(width, height) * 0.35;
+            const colors = getCanvasColors();
 
-            ctx.strokeStyle = `rgba(129, 140, 248, ${0.1 * alpha})`;
+            ctx.strokeStyle = `rgba(${colors.indigo}, ${0.12 * alpha})`;
             ctx.lineWidth = 1;
 
             // Concentric circles
@@ -737,8 +770,8 @@ document.addEventListener('DOMContentLoaded', () => {
             // Radar sweep
             radarAngle += 0.01;
             const grad = ctx.createRadialGradient(centerX, centerY, 0, centerX, centerY, maxRadius);
-            grad.addColorStop(0, `rgba(67, 56, 202, 0)`);
-            grad.addColorStop(1, `rgba(67, 56, 202, ${0.12 * alpha})`);
+            grad.addColorStop(0, `rgba(${colors.accent}, 0)`);
+            grad.addColorStop(1, `rgba(${colors.accent}, ${0.12 * alpha})`);
 
             ctx.beginPath();
             ctx.moveTo(centerX, centerY);
@@ -748,7 +781,7 @@ document.addEventListener('DOMContentLoaded', () => {
             ctx.fill();
 
             // Sweep indicator line
-            ctx.strokeStyle = `rgba(129, 140, 248, ${0.5 * alpha})`;
+            ctx.strokeStyle = `rgba(${colors.indigo}, ${0.5 * alpha})`;
             ctx.beginPath();
             ctx.moveTo(centerX, centerY);
             ctx.lineTo(centerX + Math.cos(radarAngle) * maxRadius, centerY + Math.sin(radarAngle) * maxRadius);
@@ -771,20 +804,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 ctx.beginPath();
                 ctx.arc(px, py, p.size, 0, Math.PI * 2);
-                ctx.fillStyle = `rgba(192, 132, 252, ${opacity * alpha})`;
+                ctx.fillStyle = `rgba(${colors.purple}, ${opacity * alpha})`;
                 ctx.fill();
 
                 if (opacity > 0.6) {
                     ctx.beginPath();
                     ctx.arc(px, py, p.size * 2.5, 0, Math.PI * 2);
-                    ctx.strokeStyle = `rgba(192, 132, 252, ${(opacity - 0.6) * 0.3 * alpha})`;
+                    ctx.strokeStyle = `rgba(${colors.purple}, ${(opacity - 0.6) * 0.3 * alpha})`;
                     ctx.stroke();
                 }
             });
         };
 
         const drawCircuit = (alpha) => {
-            ctx.strokeStyle = `rgba(129, 140, 248, ${0.08 * alpha})`;
+            const colors = getCanvasColors();
+            ctx.strokeStyle = `rgba(${colors.indigo}, ${0.1 * alpha})`;
             ctx.lineWidth = 1;
 
             // Draw grid tracks
@@ -817,15 +851,15 @@ document.addEventListener('DOMContentLoaded', () => {
                         const y = t.pos * height;
                         const x = progressVal * width;
                         const grad = ctx.createLinearGradient(Math.max(0, x - p.len), y, x, y);
-                        grad.addColorStop(0, 'rgba(192, 132, 252, 0)');
-                        grad.addColorStop(1, `rgba(192, 132, 252, ${0.7 * alpha})`);
+                        grad.addColorStop(0, `rgba(${colors.purple}, 0)`);
+                        grad.addColorStop(1, `rgba(${colors.purple}, ${0.7 * alpha})`);
                         ctx.strokeStyle = grad;
                         ctx.lineWidth = 2;
                         ctx.moveTo(Math.max(0, x - p.len), y);
                         ctx.lineTo(x, y);
                         ctx.stroke();
 
-                        ctx.fillStyle = `rgba(255, 255, 255, ${0.9 * alpha})`;
+                        ctx.fillStyle = `rgba(${colors.white}, ${0.9 * alpha})`;
                         ctx.beginPath();
                         ctx.arc(x, y, 2.5, 0, Math.PI * 2);
                         ctx.fill();
@@ -833,15 +867,15 @@ document.addEventListener('DOMContentLoaded', () => {
                         const x = t.pos * width;
                         const y = progressVal * height;
                         const grad = ctx.createLinearGradient(x, Math.max(0, y - p.len), x, y);
-                        grad.addColorStop(0, 'rgba(129, 140, 248, 0)');
-                        grad.addColorStop(1, `rgba(129, 140, 248, ${0.7 * alpha})`);
+                        grad.addColorStop(0, `rgba(${colors.indigo}, 0)`);
+                        grad.addColorStop(1, `rgba(${colors.indigo}, ${0.7 * alpha})`);
                         ctx.strokeStyle = grad;
                         ctx.lineWidth = 2;
                         ctx.moveTo(x, Math.max(0, y - p.len));
                         ctx.lineTo(x, y);
                         ctx.stroke();
 
-                        ctx.fillStyle = `rgba(255, 255, 255, ${0.9 * alpha})`;
+                        ctx.fillStyle = `rgba(${colors.white}, ${0.9 * alpha})`;
                         ctx.beginPath();
                         ctx.arc(x, y, 2.5, 0, Math.PI * 2);
                         ctx.fill();
@@ -855,6 +889,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const startY = height * 0.15;
             const endY = height * 0.85;
             const funnelHeight = endY - startY;
+            const colors = getCanvasColors();
 
             // Draw rings
             const rings = 3;
@@ -865,16 +900,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 const rx = (1 - progress * 0.65) * (width * 0.35);
                 const ry = rx * 0.25;
 
-                ctx.strokeStyle = `rgba(129, 140, 248, ${(0.15 + (1 - progress) * 0.15) * alpha})`;
+                ctx.strokeStyle = `rgba(${colors.indigo}, ${(0.15 + (1 - progress) * 0.15) * alpha})`;
                 ctx.beginPath();
                 ctx.ellipse(centerX, y, rx, ry, 0, 0, Math.PI * 2);
                 ctx.stroke();
 
-                ctx.strokeStyle = `rgba(192, 132, 252, ${0.1 * alpha})`;
+                ctx.strokeStyle = `rgba(${colors.purple}, ${0.1 * alpha})`;
                 for (let a = 0; a < Math.PI * 2; a += Math.PI / 4) {
                     ctx.beginPath();
                     ctx.arc(centerX + Math.cos(a) * rx, y + Math.sin(a) * ry, 2, 0, Math.PI * 2);
-                    ctx.fillStyle = `rgba(192, 132, 252, ${0.3 * alpha})`;
+                    ctx.fillStyle = `rgba(${colors.purple}, ${0.3 * alpha})`;
                     ctx.fill();
                 }
             }
@@ -895,7 +930,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 ctx.beginPath();
                 ctx.arc(px, py, p.size, 0, Math.PI * 2);
-                ctx.fillStyle = p.color;
+                
+                // Dynamically adjust hardcoded funnel colors if in light mode
+                const baseColor = p.color.includes('129, 140, 248') 
+                    ? `rgba(${colors.indigo}, 0.8)` 
+                    : `rgba(${colors.purple}, 0.8)`;
+                ctx.fillStyle = baseColor;
                 ctx.globalAlpha = (1 - p.y * 0.3) * alpha;
                 ctx.fill();
                 ctx.globalAlpha = 1.0;
