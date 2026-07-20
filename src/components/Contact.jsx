@@ -65,17 +65,18 @@ const Contact = () => {
   };
 
   return (
-    <section className="contact-section" id="contact" style={{ position: 'relative', overflow: 'hidden', background: 'transparent' }}>
-      <div className="contact-container reveal-text" style={{ position: 'relative', zIndex: 1 }}>
-        <div className="contact-card">
+    <section className="contact-section" id="contact">
+      <div className="bg-dot-patch contact-top-left"></div>
+      <div className="contact-container reveal-text">
+        <div className="contact-card glass-panel">
           <div className="contact-info">
-            <h2 className="serif">Ready to scale your <i>business</i> online?</h2>
-            <p className="mono">REQUEST A CUSTOM MARKET AUDIT AND WEB BUILD PROPOSAL.</p>
+            <h2 className="serif">Ready to scale your <i>business</i>?</h2>
+            <p className="mono info-sub text-emerald">Request a custom market audit and web proposal.</p>
             
             <div className="contact-methods">
               <div className="method-item">
                 <span className="method-label mono">EMAIL</span>
-                <a href="mailto:hello@aparox.ai" className="method-link serif">hello@aparox.ai</a>
+                <a href="mailto:aparoxpvtltd@gmail.com" className="method-link serif">hello@aparox.ai</a>
               </div>
               <div className="method-item">
                 <span className="method-label mono">LOCATION</span>
@@ -84,24 +85,23 @@ const Contact = () => {
             </div>
 
             <div className="social-pills">
-              <a href="#" className="social-pill">INSTAGRAM</a>
-              <a href="#" className="social-pill">LINKEDIN</a>
-              <a href="#" className="social-pill">TWITTER</a>
+              <a href="https://www.instagram.com/aparoxpvtltd?igsh=MTVpNmJlNzN6eTJscw==" className="social-pill" target="_blank" rel="noopener noreferrer">INSTAGRAM</a>
+              <a href="https://www.linkedin.com/company/aparox" className="social-pill" target="_blank" rel="noopener noreferrer">LINKEDIN</a>
             </div>
           </div>
 
           <form className="contact-form" id="contact-form" onSubmit={handleSubmit}>
             <div className="form-group">
-              <input type="text" id="name" placeholder="YOUR NAME" value={formData.name} onChange={handleChange} required autoComplete="off" />
-              <label htmlFor="name" className="mono">NAME</label>
+              <input type="text" id="name" placeholder=" " value={formData.name} onChange={handleChange} required autoComplete="off" />
+              <label htmlFor="name" className="mono">YOUR NAME</label>
             </div>
             <div className="form-group">
-              <input type="email" id="email" placeholder="EMAIL ADDRESS" value={formData.email} onChange={handleChange} required autoComplete="off" />
-              <label htmlFor="email" className="mono">EMAIL</label>
+              <input type="email" id="email" placeholder=" " value={formData.email} onChange={handleChange} required autoComplete="off" />
+              <label htmlFor="email" className="mono">EMAIL ADDRESS</label>
             </div>
             <div className="form-group">
-              <textarea id="message" placeholder="TELL US ABOUT YOUR BUSINESS OR PROJECT" value={formData.message} onChange={handleChange} rows="4" required></textarea>
-              <label htmlFor="message" className="mono">MESSAGE</label>
+              <textarea id="message" placeholder=" " value={formData.message} onChange={handleChange} rows="4" required></textarea>
+              <label htmlFor="message" className="mono">YOUR MESSAGE</label>
             </div>
             <button type="submit" className="submit-btn mono" disabled={loading}>
               <span>{loading ? 'SENDING...' : status === 'MESSAGE SENT SUCCESSFULLY!' || status === 'REDIRECTING TO MAIL CLIENT...' ? 'SENT' : 'SEND MESSAGE'}</span>

@@ -20,62 +20,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 0. Remove Spline Watermark (More aggressive version)
-    const splineViewer = document.querySelector('spline-viewer');
-    if (splineViewer) {
-        const interval = setInterval(() => {
-            const shadowRoot = splineViewer.shadowRoot;
-            if (shadowRoot) {
-                // Try removing elements directly
-                const logo = shadowRoot.getElementById('logo') || 
-                             shadowRoot.querySelector('a[href*="spline.design"]') || 
-                             shadowRoot.querySelector('[class*="logo"]') ||
-                             shadowRoot.querySelector('a[href*="spline"]');
-                if (logo) {
-                    logo.remove();
-                }
-                
-                // Inject style element to hide watermark / logo elements
-                if (!shadowRoot.querySelector('#anti-watermark-style')) {
-                    const style = document.createElement('style');
-                    style.id = 'anti-watermark-style';
-                    style.textContent = `
-                        #logo, .logo, a[href*="spline.design"], a[href*="spline"], #spline-logo, [class*="watermark"] {
-                            display: none !important;
-                            visibility: hidden !important;
-                            opacity: 0 !important;
-                            pointer-events: none !important;
-                        }
-                    `;
-                    shadowRoot.appendChild(style);
-                }
-            }
-        }, 100);
-        // Keep running for 10 seconds to ensure it stays hidden
-        setTimeout(() => clearInterval(interval), 10000);
-
-        // Pause/Hide Spline rendering when hero is not in viewport to optimize GPU load
-        const splineObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    splineViewer.style.display = 'block';
-                } else {
-                    splineViewer.style.display = 'none';
-                }
-            });
-        }, { threshold: 0 });
-        
-        const heroSection = document.querySelector('.hero');
-        if (heroSection) {
-            splineObserver.observe(heroSection);
-            
-            // Disable Zoom on Scroll in Hero section Spline model
-            heroSection.addEventListener('wheel', (e) => {
-                e.stopPropagation();
-            }, { capture: true });
-        }
-    }
-
     // 1. Reveal Animations on Scroll
     const observerOptions = {
         threshold: 0.1,
@@ -544,7 +488,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 ctx.beginPath();
                 ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
                 const isLight = document.body.classList.contains('light-theme');
-                ctx.fillStyle = isLight ? 'rgba(79, 70, 229, 0.8)' : 'rgba(129, 140, 248, 0.7)'; // Indigo 600 vs Indigo 400
+                ctx.fillStyle = isLight ? 'rgba(5, 150, 105, 0.8)' : 'rgba(52, 211, 153, 0.75)';
                 ctx.fill();
             }
         }
@@ -584,7 +528,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             ctx.lineTo(p2.x, p2.y);
                             // Fade out lines as they get further apart
                             const alpha = (1 - dist / connectionDistance) * 0.15;
-                            ctx.strokeStyle = isLight ? `rgba(109, 40, 217, ${alpha})` : `rgba(192, 132, 252, ${alpha})`; // Purple 700 vs Purple 400
+                            ctx.strokeStyle = isLight ? `rgba(5, 150, 105, ${alpha})` : `rgba(52, 211, 153, ${alpha})`;
                             ctx.lineWidth = 0.8;
                             ctx.stroke();
                         }
@@ -600,7 +544,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             ctx.moveTo(p1.x, p1.y);
                             ctx.lineTo(mouse.x, mouse.y);
                             const alpha = (1 - dist / mouse.radius) * 0.25;
-                            ctx.strokeStyle = isLight ? `rgba(79, 70, 229, ${alpha})` : `rgba(129, 140, 248, ${alpha})`;
+                            ctx.strokeStyle = isLight ? `rgba(5, 150, 105, ${alpha})` : `rgba(52, 211, 153, ${alpha})`;
                             ctx.lineWidth = 1;
                             ctx.stroke();
                         }

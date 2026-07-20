@@ -7,24 +7,20 @@
     <meta name="description" content="A premium editorial-tech hybrid platform utilizing organic intelligence and fluid design.">
     <link rel="icon" type="image/png" href="/logo.png">
     <link rel="stylesheet" href="style.css">
-    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.54/build/spline-viewer.js"></script>
 </head>
 <body>
+    <div class="grain-overlay"></div>
     <div class="bg-blue-line"></div>
-    <header>
+    
+    <header class="floating-navbar">
         <a href="#" class="logo serif"><img src="/logo.png" alt="Aparox AI Logo" id="site-logo"></a>
         <nav class="mono" id="main-nav">
-            <a href="#about">About</a>
-            <a href="#analytics">Analytics</a>
-            <a href="#features">Features</a>
-            <a href="#services">Services</a>
-            <a href="#testimonials">Reviews</a>
-            <a href="#contact">Contact</a>
+            <a href="#about" class="nav-link">About</a>
+            <a href="#features" class="nav-link">Features</a>
+            <a href="#productivity" class="nav-link">Build</a>
+            <a href="#pricing" class="nav-link">Pricing</a>
+            <a href="#contact" class="nav-link">Contact</a>
         </nav>
-        <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle Theme">
-            <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
-            <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
-        </button>
         <button class="menu-toggle" id="menu-toggle" aria-label="Toggle Menu">
             <div class="line"></div>
             <div class="line"></div>
@@ -32,73 +28,85 @@
     </header>
 
     <main>
-        <section class="hero">
-            <div class="bg-dot-patch hero-top-right"></div>
-            <spline-viewer url="https://prod.spline.design/2zYad3evfv4ogiuN/scene.splinecode" class="hero-spline"></spline-viewer>
-            
-            <div class="hero-bottom-text bottom-left reveal-text">
-                <h2>Let's build<br><i>something.</i></h2>
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="hero-bg-wrapper">
+                <img src="/hero_bg.png" alt="Aparox Hero Art" class="hero-bg-img">
+                <div class="hero-gradient-overlay"></div>
             </div>
             
-            <div class="hero-bottom-text bottom-right reveal-text">
-                <div class="scroll-title">Scroll Down</div>
-                <div class="about-text">Aparox AI builds premium digital infrastructure driven by organic intelligence and fluid design.</div>
-            </div>
-        </section>
-
-        <section id="analytics" class="analytics-section">
-            <div class="analytics-container reveal-text">
-                <div class="section-header" style="text-align: center; margin-bottom: 4rem;">
-                    <h2 class="serif">Market <i>Intelligence</i></h2>
-                    <p class="mono">Real-time Business Potential Analysis</p>
+            <div class="hero-bg-text-blur">CREATE</div>
+            
+            <div class="hero-grid-container">
+                <div class="hero-left-col reveal-text">
+                    <span class="label mono text-emerald">Organic Intelligence</span>
+                    <h1 class="serif">Design the <i>Future</i></h1>
+                    <p class="hero-desc">Aparox AI engineers custom high-performance digital platforms using organic design and modern web technology.</p>
+                    
+                    <div class="hero-chat-container">
+                        <div class="chat-results-container" id="chat-thread">
+                            <button class="close-chat-btn" id="close-chat" title="Exit Chat">&times;</button>
+                        </div>
+                        
+                        <div class="search-container">
+                            <div class="search-input-wrapper">
+                                <textarea placeholder="Ask Gemini AI a question about your project needs..." rows="1"></textarea>
+                            </div>
+                            <div class="search-toolbar">
+                                <div class="toolbar-left">
+                                    <button class="tool-icon" title="Image"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg></button>
+                                    <button class="tool-icon" title="Code"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg></button>
+                                    <button class="tool-icon" title="Reference"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg></button>
+                                    <div class="model-picker">
+                                        <span class="gemini-icon">G</span>
+                                        <span>Gemini 3 pro</span>
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                                    </div>
+                                </div>
+                                <div class="toolbar-right">
+                                    <div class="design-system-picker">
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path><path d="M2 12h20"></path></svg>
+                                        <span>Design System</span>
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                                    </div>
+                                    <button class="send-btn">
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="19" x2="12" y2="5"></line><polyline points="5 12 12 5 19 12"></polyline></svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="quick-actions">
+                            <button class="action-pill"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg> E-Commerce Audit</button>
+                            <button class="action-pill"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="22" y1="12" x2="18" y2="12"></line><line x1="6" y1="12" x2="2" y2="12"></line><line x1="12" y1="6" x2="12" y2="2"></line><line x1="12" y1="22" x2="12" y2="18"></line></svg> Design Refresh</button>
+                        </div>
+                    </div>
                 </div>
                 
-                <div class="analytics-card">
-                    <form id="analytics-form" class="analytics-form">
-                        <div class="input-row">
-                            <div class="input-group">
-                                <label class="mono" for="biz-name">Business / Shop Name</label>
-                                <input type="text" id="biz-name" placeholder="e.g. Joe's Coffee Shop" required>
-                            </div>
-                            <div class="input-group">
-                                <label class="mono" for="biz-location">Location</label>
-                                <input type="text" id="biz-location" placeholder="e.g. Indiranagar, Bengaluru" required>
-                            </div>
+                <div class="hero-right-col reveal-text">
+                    <div class="stats-card-stack">
+                        <div class="glass-stat-card">
+                            <span class="stat-number serif text-emerald">98%</span>
+                            <span class="stat-label-small mono">Avg Speed Score</span>
                         </div>
-                        <button type="submit" class="analyze-btn">
-                            <span class="btn-text">Analyze Potential</span>
-                            <div class="btn-loader" style="display:none;"></div>
-                        </button>
-                    </form>
-
-                    <div id="analytics-results" class="analytics-results" style="display:none;">
-                        <div class="result-header">
-                            <h3 class="serif">Intelligence Report</h3>
-                            <p class="mono" id="result-biz-name">Target: </p>
+                        <div class="glass-stat-card">
+                            <span class="stat-number serif">100%</span>
+                            <span class="stat-label-small mono">Bespoke Custom Code</span>
                         </div>
-                        <div class="stats-grid">
-                            <div class="stat-box">
-                                <div class="stat-label mono">Total Addressable Market (TAM)</div>
-                                <div class="stat-value" id="stat-tam">₹0</div>
-                            </div>
-                            <div class="stat-box">
-                                <div class="stat-label mono">Local Customers / Month</div>
-                                <div class="stat-value" id="stat-customers">0</div>
-                            </div>
-                            <div class="stat-box accent-box">
-                                <div class="stat-label mono">Online Profit Potential</div>
-                                <div class="stat-value" id="stat-profit">₹0</div>
-                                <div class="stat-sub">Estimated Annual Increase</div>
-                            </div>
-                        </div>
-                        <div class="result-footer">
-                            <p class="mono" style="opacity: 0.5; font-size: 10px; text-align: center; margin-top: 2rem;">*Mock data active. Live web scraper integration pending.</p>
+                        <div class="glass-stat-card">
+                            <span class="stat-number serif text-emerald">2.4x</span>
+                            <span class="stat-label-small mono">Conversion Boost</span>
                         </div>
                     </div>
                 </div>
             </div>
+
+            <div class="hero-scroll-indicator reveal-text">
+                <span class="scroll-title mono">Scroll Down</span>
+            </div>
         </section>
 
+        <!-- About Section -->
         <section id="about" class="about-section reveal-text">
             <div class="bg-dot-patch about-bottom-left"></div>
             <div class="about-container">
@@ -108,13 +116,13 @@
                     <div class="noise-overlay"></div>
                 </div>
                 <div class="about-content">
-                    <h2 class="mono tag">The Agency</h2>
+                    <h2 class="mono tag text-emerald">The Agency</h2>
                     <h3 class="serif">Bridging Analytics & <i>Experience</i></h3>
                     <p>At Aparox, we believe that beautiful design must be backed by hard data. We don't just build stunning web experiences; we analyze real-world market data to prove your ROI before we write a single line of code. From local brick-and-mortars to global enterprises, we engineer scalable online growth.</p>
                     <div class="about-stats-grid">
                         <div class="about-stat-card glass-panel">
                             <div class="stat-number-wrapper">
-                                <span class="serif stat-number" data-target="98">0</span><span class="serif stat-suffix">+</span>
+                                <span class="serif stat-number text-emerald" data-target="98">0</span><span class="serif stat-suffix text-emerald">+</span>
                             </div>
                             <p class="mono">Avg Lighthouse Score</p>
                         </div>
@@ -129,169 +137,350 @@
             </div>
         </section>
 
-        <section id="features" class="features-section">
-            <div class="section-header">
-                <h2 class="serif">Our <i>Methodology</i></h2>
-                <p class="mono">Engineered for Growth</p>
-            </div>
-            <div class="features-grid">
-                <div class="feature-card glass-panel reveal-text">
-                    <div class="feature-icon-wrapper">
-                        <div class="feature-icon">
-                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path></svg>
+        <!-- Feature Grid Section -->
+        <section id="features" class="feature-grid-section">
+            <div class="section-container">
+                <div class="feature-two-col">
+                    <!-- Left Column: Sticky Header & Grid -->
+                    <div class="feature-left-col">
+                        <div class="sticky-feature-header reveal-text">
+                            <span class="label mono text-emerald font-semibold">Methodology</span>
+                            <h2 class="serif">Engineered for <i>Growth</i></h2>
+                            <p>We deploy advanced digital frameworks designed to optimize conversions and accelerate loading speeds.</p>
+                        </div>
+                        
+                        <div class="feature-mini-grid reveal-text">
+                            <div class="feature-mini-card">
+                                <div class="mini-icon text-emerald">✦</div>
+                                <span class="mini-label mono">Market Intelligence</span>
+                            </div>
+                            <div class="feature-mini-card">
+                                <div class="mini-icon">✦</div>
+                                <span class="mini-label mono">Bespoke Dev</span>
+                            </div>
+                            <div class="feature-mini-card">
+                                <div class="mini-icon">✦</div>
+                                <span class="mini-label mono">UI/UX Flow</span>
+                            </div>
+                            <div class="feature-mini-card">
+                                <div class="mini-icon text-emerald">✦</div>
+                                <span class="mini-label mono">SEO Framework</span>
+                            </div>
+                            <div class="feature-mini-card">
+                                <div class="mini-icon">✦</div>
+                                <span class="mini-label mono">E-commerce Backend</span>
+                            </div>
+                            <div class="feature-mini-card">
+                                <div class="mini-icon text-emerald">✦</div>
+                                <span class="mini-label mono">Analytics Dashboard</span>
+                            </div>
                         </div>
                     </div>
-                    <h4 class="serif">Market Intelligence</h4>
-                    <p>Real-time data analysis to uncover your exact Total Addressable Market (TAM) before building.</p>
-                </div>
-                <div class="feature-card glass-panel reveal-text">
-                    <div class="feature-icon-wrapper">
-                        <div class="feature-icon">
-                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path><path d="M2 12h20"></path></svg>
-                        </div>
-                    </div>
-                    <h4 class="serif">Bespoke Development</h4>
-                    <p>High-fidelity, custom-coded web platforms tailored specifically to your brand's DNA.</p>
-                </div>
-                <div class="feature-card glass-panel reveal-text">
-                    <div class="feature-icon-wrapper">
-                        <div class="feature-icon">
-                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
-                        </div>
-                    </div>
-                    <h4 class="serif">Conversion Focused</h4>
-                    <p>Data-driven UI/UX design architecture guaranteed to turn your web traffic into profit.</p>
-                </div>
-                <div class="feature-card glass-panel reveal-text">
-                    <div class="feature-icon-wrapper">
-                        <div class="feature-icon">
-                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-                        </div>
-                    </div>
-                    <h4 class="serif">Seamless Integration</h4>
-                    <p>From robust e-commerce backends to fully automated local lead generation systems.</p>
-                </div>
-            </div>
-        </section>
-
-        <section id="services" class="services-section">
-            <div class="services-left">
-                <h2 class="serif">Core<br><i>Capabilities</i></h2>
-                <div class="services-visualizer glass-panel">
-                    <canvas id="services-canvas"></canvas>
-                </div>
-                <a href="#contact" class="cta-link">
-                    <span>Explore Solutions</span>
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-                </a>
-            </div>
-            <div class="services-right">
-                <div class="accordion-item active" data-service="0">
-                    <div class="accordion-header">
-                        <h3 class="serif">Data & Market Analysis</h3>
-                        <span class="mono accordion-icon">+</span>
-                    </div>
-                    <div class="accordion-content">
-                        <div class="accordion-inner">
-                            <p>We deploy advanced algorithms to uncover your local addressable market and predict online profitability.</p>
-                            <span class="tag-mono">[Market Intelligence]</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="accordion-item" data-service="1">
-                    <div class="accordion-header">
-                        <h3 class="serif">Full-Stack Development</h3>
-                        <span class="mono accordion-icon">+</span>
-                    </div>
-                    <div class="accordion-content">
-                        <div class="accordion-inner">
-                            <p>Exquisite, high-performance web applications built from the ground up for maximum speed and scale.</p>
-                            <span class="tag-mono">[Custom Web Apps]</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="accordion-item" data-service="2">
-                    <div class="accordion-header">
-                        <h3 class="serif">E-Commerce & Funnels</h3>
-                        <span class="mono accordion-icon">+</span>
-                    </div>
-                    <div class="accordion-content">
-                        <div class="accordion-inner">
-                            <p>End-to-end digital storefronts and sales funnels designed to maximize conversion rates and revenue.</p>
-                            <span class="tag-mono">[Conversion Optimization]</span>
+                    
+                    <!-- Right Column: Display Card & System Widget -->
+                    <div class="feature-right-col reveal-text">
+                        <div class="dashboard-display-card">
+                            <div class="image-zoom-container">
+                                <img src="/feature_dashboard.png" alt="Aparox System Dashboard" class="display-image">
+                            </div>
+                            
+                            <!-- Floating Glass System Analysis Widget -->
+                            <div class="glass-system-widget glass-panel">
+                                <div class="widget-header">
+                                    <div class="status-dot"></div>
+                                    <span class="mono text-xs">System Analysis</span>
+                                </div>
+                                <div class="progress-stack">
+                                    <div class="progress-item">
+                                        <div class="progress-labels mono">
+                                            <span>Speed Index</span>
+                                            <span class="text-emerald">99%</span>
+                                        </div>
+                                        <div class="progress-bar-bg"><div class="progress-bar-fill emerald-fill" style="width: 99%"></div></div>
+                                    </div>
+                                    <div class="progress-item">
+                                        <div class="progress-labels mono">
+                                            <span>SEO Optimization</span>
+                                            <span>100%</span>
+                                        </div>
+                                        <div class="progress-bar-bg"><div class="progress-bar-fill" style="width: 100%"></div></div>
+                                    </div>
+                                    <div class="progress-item">
+                                        <div class="progress-labels mono">
+                                            <span>Fluid Performance</span>
+                                            <span class="text-emerald">98%</span>
+                                        </div>
+                                        <div class="progress-bar-bg"><div class="progress-bar-fill emerald-fill" style="width: 98%"></div></div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
+        <!-- Dark Productivity Block (Analytics Scraper Tool) -->
+        <section id="productivity" class="productivity-section">
+            <div class="productivity-container">
+                <div class="productivity-two-col">
+                    <!-- Left Column: Steps -->
+                    <div class="productivity-left-col reveal-text">
+                        <span class="label mono text-emerald">Instant Audit</span>
+                        <h2 class="serif text-white">Proven <i>Intelligence</i></h2>
+                        <p class="text-secondary">Run our interactive scraper to analyze local market capacity and projected online profit margins before we design.</p>
+                        
+                        <div class="steps-stack">
+                            <div class="step-item">
+                                <div class="step-num mono">01</div>
+                                <div class="step-text">
+                                    <h4 class="text-white font-medium">Input Target Parameters</h4>
+                                    <p>Enter your business name and location to define the scraper audit zone.</p>
+                                </div>
+                            </div>
+                            <div class="step-item">
+                                <div class="step-num mono">02</div>
+                                <div class="step-text">
+                                    <h4 class="text-white font-medium">Run Scraper Scan</h4>
+                                    <p>Our algorithms fetch local traffic data and construct a mock Report card instantly.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Right Column: 3D Transformed Scraper Tool Panel -->
+                    <div class="productivity-right-col reveal-text">
+                        <div class="mockup-window-3d glass-panel">
+                            <!-- Window Control Bar -->
+                            <div class="window-bar">
+                                <div class="bar-dots">
+                                    <span class="dot dot-red"></span>
+                                    <span class="dot dot-yellow"></span>
+                                    <span class="dot dot-green"></span>
+                                </div>
+                                <span class="window-title mono">market_scraper.exe</span>
+                            </div>
+                            
+                            <!-- Internal Content (The Scraper Tool) -->
+                            <div class="window-content">
+                                <div class="analytics-card">
+                                    <form id="analytics-form" class="analytics-form">
+                                        <div class="input-row">
+                                            <div class="input-group">
+                                                <label class="mono" for="biz-name">Business / Shop Name</label>
+                                                <input type="text" id="biz-name" placeholder="e.g. Peak Coffee" required>
+                                            </div>
+                                            <div class="input-group">
+                                                <label class="mono" for="biz-location">Location</label>
+                                                <input type="text" id="biz-location" placeholder="e.g. Indiranagar, Bengaluru" required>
+                                            </div>
+                                        </div>
+                                        <button type="submit" class="analyze-btn inline-action-btn">
+                                            <span class="btn-text">Run Scraper Audit</span>
+                                            <div class="btn-loader" style="display:none;"></div>
+                                        </button>
+                                    </form>
+
+                                    <!-- Scraper Results -->
+                                    <div id="analytics-results" class="analytics-results" style="display:none;">
+                                        <div class="result-header">
+                                            <h3 class="serif text-white">Scraper Report</h3>
+                                            <p class="mono text-emerald" id="result-biz-name">Target: </p>
+                                        </div>
+                                        <div class="stats-grid">
+                                            <div class="stat-box">
+                                                <div class="stat-label mono">Market Size (TAM)</div>
+                                                <div class="stat-value" id="stat-tam">₹0</div>
+                                            </div>
+                                            <div class="stat-box">
+                                                <div class="stat-label mono">Customers / Month</div>
+                                                <div class="stat-value" id="stat-customers">0</div>
+                                            </div>
+                                            <div class="stat-box accent-box">
+                                                <div class="stat-label mono">Online Profit Potential</div>
+                                                <div class="stat-value text-emerald" id="stat-profit">₹0</div>
+                                                <div class="stat-sub">Estimated Annual Increase</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Bouncing Status Tag -->
+                            <div class="bouncing-status-tag mono">
+                                <span class="pulse-dot"></span>
+                                SYSTEM_ACTIVE
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pricing Bento Grid Section -->
+        <section id="pricing" class="pricing-bento-section">
+            <div class="section-container">
+                <div class="section-header text-center reveal-text">
+                    <span class="label mono text-emerald font-semibold">Service Architecture</span>
+                    <h2 class="serif">Bespoke <i>Solutions</i></h2>
+                    <p>Transparent scaling structures engineered around verified return on investment.</p>
+                </div>
+                
+                <div class="pricing-bento-grid reveal-text">
+                    <!-- Pricing Card 1: Starter -->
+                    <div class="pricing-card">
+                        <div class="card-image-wrapper">
+                            <img src="/pricing_starter.png" alt="Starter Plan Illustration" class="pricing-card-img">
+                            <div class="image-gradient-bottom"></div>
+                        </div>
+                        <div class="card-body">
+                            <div class="card-pricing-title">
+                                <h3 class="serif">Launch</h3>
+                                <span class="price serif">₹49,999</span>
+                            </div>
+                            <p class="mono text-xs">For local businesses launching online presence</p>
+                            <ul class="pricing-features mono">
+                                <li>✦ Bespoke Design System</li>
+                                <li>✦ Performance Audit (Score 98+)</li>
+                                <li>✦ Contact Form Integration</li>
+                                <li>✦ 3 Months Local SLA Support</li>
+                            </ul>
+                            
+                            <a href="#contact" class="interactive-action-btn">
+                                <span class="btn-label">Get Started</span>
+                                <div class="icon-circle"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></div>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Pricing Card 2: Pro -->
+                    <div class="pricing-card active-card">
+                        <div class="card-image-wrapper">
+                            <img src="/pricing_pro.png" alt="Pro Plan Illustration" class="pricing-card-img">
+                            <div class="image-gradient-bottom"></div>
+                        </div>
+                        <div class="card-body">
+                            <div class="card-pricing-title">
+                                <h3 class="serif text-emerald">Scale</h3>
+                                <span class="price serif text-emerald">₹1,49,999</span>
+                            </div>
+                            <p class="mono text-xs">High performance conversion infrastructure</p>
+                            <ul class="pricing-features mono">
+                                <li>✦ Complete Market Analysis</li>
+                                <li>✦ 5-Page Web Application</li>
+                                <li>✦ Automated Lead Gen Routing</li>
+                                <li>✦ Gemini Core Integration</li>
+                                <li>✦ 6 Months Priority SLA Support</li>
+                            </ul>
+                            
+                            <a href="#contact" class="interactive-action-btn">
+                                <span class="btn-label">Acquire License</span>
+                                <div class="icon-circle"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></div>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Pricing Card 3: Enterprise -->
+                    <div class="pricing-card">
+                        <div class="card-image-wrapper">
+                            <img src="/pricing_enterprise.png" alt="Enterprise Plan Illustration" class="pricing-card-img">
+                            <div class="image-gradient-bottom"></div>
+                        </div>
+                        <div class="card-body">
+                            <div class="card-pricing-title">
+                                <h3 class="serif">Bespoke</h3>
+                                <span class="price serif">Custom</span>
+                            </div>
+                            <p class="mono text-xs">Dedicated infrastructure for corporations</p>
+                            <ul class="pricing-features mono">
+                                <li>✦ Full TAM Scraper Audit</li>
+                                <li>✦ Custom Application Architecture</li>
+                                <li>✦ Multi-Database Integrations</li>
+                                <li>✦ Dedicated Team SLA Support</li>
+                            </ul>
+                            
+                            <a href="#contact" class="interactive-action-btn">
+                                <span class="btn-label">Initiate Query</span>
+                                <div class="icon-circle"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
         <section id="testimonials" class="testimonials-section reveal-text">
-            <div class="section-header" style="text-align: center; margin-bottom: 5rem;">
-                <h2 class="serif">Client <i>Stories</i></h2>
-                <p class="mono">Real Impact, Real Growth</p>
-            </div>
-            
-            <div class="testimonials-grid">
-                <div class="testimonial-card glass-panel">
-                    <div class="testimonial-quote">
-                        "Aparox analyzed our local traffic footfall in Indiranagar and built a high-converting storefront that increased our monthly online orders by 140%. Truly data-driven!"
-                    </div>
-                    <div class="testimonial-author">
-                        <span class="author-name">Aditya Sharma</span>
-                        <span class="author-role mono">Founder, Peak Coffee (Bengaluru)</span>
-                        <div class="testimonial-rating">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+            <div class="section-container">
+                <div class="section-header text-center" style="margin-bottom: 5rem;">
+                    <span class="label mono text-emerald font-semibold">Client Stories</span>
+                    <h2 class="serif">Real Impact, Real <i>Growth</i></h2>
+                    <p>Verified returns on performance-driven custom codebases.</p>
+                </div>
+                
+                <div class="testimonials-grid">
+                    <div class="testimonial-card glass-panel">
+                        <div class="testimonial-quote">
+                            "Aparox analyzed our local traffic footfall in Indiranagar and built a high-converting storefront that increased our monthly online orders by 140%. Truly data-driven!"
+                        </div>
+                        <div class="testimonial-author">
+                            <span class="author-name">Aditya Sharma</span>
+                            <span class="author-role mono">Founder, Peak Coffee (Bengaluru)</span>
+                            <div class="testimonial-rating">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="testimonial-card glass-panel">
-                    <div class="testimonial-quote">
-                        "Their design aesthetic is premium and clean, but what really impressed us was the ROI proof before coding. The new site loads in 0.8s and our conversion rate doubled."
-                    </div>
-                    <div class="testimonial-author">
-                        <span class="author-name">Meera Iyer</span>
-                        <span class="author-role mono">Marketing Director, Veda Organics (Mysore)</span>
-                        <div class="testimonial-rating">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                    <div class="testimonial-card glass-panel">
+                        <div class="testimonial-quote">
+                            "Their design aesthetic is premium and clean, but what really impressed us was the ROI proof before coding. The new site loads in 0.8s and our conversion rate doubled."
+                        </div>
+                        <div class="testimonial-author">
+                            <span class="author-name">Meera Iyer</span>
+                            <span class="author-role mono">Marketing Director, Veda Organics (Mysore)</span>
+                            <div class="testimonial-rating">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="testimonial-card glass-panel">
-                    <div class="testimonial-quote">
-                        "We shifted from a basic template to Aparox's custom code. Our bounce rate dropped from 65% to 22% within the first month. Excellent local support and top execution."
-                    </div>
-                    <div class="testimonial-author">
-                        <span class="author-name">Rajesh Patel</span>
-                        <span class="author-role mono">Owner, Patel Electronics (Mumbai)</span>
-                        <div class="testimonial-rating">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                    <div class="testimonial-card glass-panel">
+                        <div class="testimonial-quote">
+                            "We shifted from a basic template to Aparox's custom code. Our bounce rate dropped from 65% to 22% within the first month. Excellent local support and top execution."
+                        </div>
+                        <div class="testimonial-author">
+                            <span class="author-name">Rajesh Patel</span>
+                            <span class="author-role mono">Owner, Patel Electronics (Mumbai)</span>
+                            <div class="testimonial-rating">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
+        <!-- Contact Section -->
         <section class="contact-section" id="contact">
             <div class="bg-dot-patch contact-top-left"></div>
             <div class="contact-container reveal-text">
                 <div class="contact-card glass-panel">
                     <div class="contact-info">
-                        <h2 class="serif">Ready to scale your <i>business</i> online?</h2>
-                        <p class="mono info-sub">REQUEST A CUSTOM MARKET AUDIT AND WEB BUILD PROPOSAL.</p>
+                        <h2 class="serif">Ready to scale your <i>business</i>?</h2>
+                        <p class="mono info-sub text-emerald">Request a custom market audit and web proposal.</p>
                         
                         <div class="contact-methods">
                             <div class="method-item">
@@ -306,8 +495,7 @@
 
                         <div class="social-pills">
                             <a href="https://www.instagram.com/aparoxpvtltd?igsh=MTVpNmJlNzN6eTJscw==" class="social-pill" target="_blank" rel="noopener noreferrer">INSTAGRAM</a>
-                            <a href="https://www.linkedin.com/company/aparox" class="social-pill">LINKEDIN</a>
-                            <a href="#" class="social-pill">FACEBOOK</a>
+                            <a href="https://www.linkedin.com/company/aparox" class="social-pill" target="_blank" rel="noopener noreferrer">LINKEDIN</a>
                         </div>
                     </div>
 
@@ -356,7 +544,6 @@
                 <ul class="footer-links">
                     <li><a href="https://www.instagram.com/aparoxpvtltd?igsh=MTVpNmJlNzN6eTJscw==" target="_blank" rel="noopener noreferrer">Instagram</a></li>
                     <li><a href="https://www.linkedin.com/company/133194006/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
-                    <li><a href="#" target="_blank" rel="noopener noreferrer">Facebook</a></li>
                 </ul>
             </div>
         </div>

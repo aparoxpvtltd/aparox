@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
-import Chat from './components/Chat';
 import Analytics from './components/Analytics';
 import About from './components/About';
 import Features from './components/Features';
@@ -43,7 +42,6 @@ function App() {
       <Navbar />
       <main>
         <Hero />
-        <Chat />
         <Analytics />
         <About />
         <Features />

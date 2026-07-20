@@ -23,16 +23,16 @@ const Navbar = () => {
   };
 
   return (
-    <header className={`${scrolled ? 'scrolled' : ''} ${menuOpen ? 'menu-open' : ''}`}>
+    <header className={`floating-navbar ${scrolled ? 'scrolled' : ''} ${menuOpen ? 'menu-open' : ''}`}>
       <a href="#" className="logo serif" onClick={closeMenu}>
         <img src="/logo.png" alt="Aparox AI Logo" id="site-logo" />
       </a>
       <nav className={`mono ${menuOpen ? 'active' : ''}`} id="main-nav">
-        <a href="#about" onClick={closeMenu}>About</a>
-        <a href="#analytics" onClick={closeMenu}>Analytics</a>
-        <a href="#features" onClick={closeMenu}>Features</a>
-        <a href="#services" onClick={closeMenu}>Services</a>
-        <a href="#contact" onClick={closeMenu}>Contact</a>
+        <a href="#about" className="nav-link" onClick={closeMenu}>About</a>
+        <a href="#features" className="nav-link" onClick={closeMenu}>Features</a>
+        <a href="#productivity" className="nav-link" onClick={closeMenu}>Build</a>
+        <a href="#pricing" className="nav-link" onClick={closeMenu}>Pricing</a>
+        <a href="#contact" className="nav-link" onClick={closeMenu}>Contact</a>
       </nav>
       <button
         className={`menu-toggle ${menuOpen ? 'active' : ''}`}
