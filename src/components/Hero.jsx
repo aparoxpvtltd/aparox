@@ -28,7 +28,7 @@ const Hero = () => {
       <div className="hero-bg-text-blur">CREATE</div>
 
       <div className="hero-grid-container">
-        <div className="hero-left-col reveal-text">
+        <div className="hero-left-col">
           <span className="label mono text-emerald">Organic Intelligence</span>
           <h1 className="serif">Design the <i>Future</i></h1>
           <p className="hero-desc">Aparox AI engineers custom high-performance digital platforms using organic design and modern web technology.</p>
@@ -37,7 +37,7 @@ const Hero = () => {
           </div>
         </div>
 
-        <div className="hero-right-col reveal-text">
+        <div className="hero-right-col">
           <div className="stats-card-stack">
             <div className="glass-stat-card">
               <span className="stat-number serif text-emerald">98%</span>
@@ -55,7 +55,7 @@ const Hero = () => {
         </div>
       </div>
 
-      <div className="hero-scroll-indicator reveal-text">
+      <div className="hero-scroll-indicator">
         <span className="scroll-title mono">Scroll Down</span>
       </div>
     </section>
